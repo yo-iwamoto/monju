@@ -49,6 +49,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  Event Event[]
   @@map("users")
 }
 
@@ -69,6 +70,9 @@ model Event {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   name String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
   @@map("events")
 }

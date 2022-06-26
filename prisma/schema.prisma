@@ -62,3 +62,13 @@ model VerificationToken {
 }
 
 // ↑ for @next-auth/prisma-adapter
+
+model Event {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name String
+
+  @@map("events")
+}

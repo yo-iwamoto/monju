@@ -49,9 +49,6 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
   @@map("users")
 }
 

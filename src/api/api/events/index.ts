@@ -1,13 +1,10 @@
-import { Serialized } from '@/api/$types';
 import { DefineMethods } from 'aspida';
-import type { Event } from '@prisma/client';
-
-type SerializedEvent = Serialized<Event>;
+import type { Event } from '@/types/event';
 
 export type Methods = DefineMethods<{
   get: {
     resBody: {
-      events: SerializedEvent[];
+      events: Event[];
     };
   };
 
@@ -16,7 +13,7 @@ export type Methods = DefineMethods<{
       name: string;
     };
     resBody: {
-      event: SerializedEvent;
+      event: Event;
     };
   };
 }>;

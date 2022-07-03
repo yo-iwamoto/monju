@@ -1,4 +1,4 @@
-import type { CreateEventForm } from '@/forms/createEvent';
+import type { CreateEventForm } from '@/forms/createEventForm';
 import type { UseFormRegister } from 'react-hook-form';
 import type { Event } from '@/types/event';
 import type { FC, FormEventHandler } from 'react';

@@ -1,13 +1,13 @@
 import { View } from './index.view';
-import { useEvents } from '@/features/events/useEvents';
 import { useCreateEvent } from '@/features/events/useCreateEvent';
 import { useDeleteEvent } from '@/features/events/useDeleteEvent';
-import { createEventForm } from '@/forms/createEvent';
-import { useForm } from 'react-hook-form';
+import { useEvents } from '@/features/events/useEvents';
+import { createEventForm } from '@/forms/createEventForm';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import type { CreateEventForm } from '@/forms/createEvent';
+import { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import type { CreateEventForm } from '@/forms/createEventForm';
 
 export default function Page() {
   const { status: sessionStatus } = useSession();

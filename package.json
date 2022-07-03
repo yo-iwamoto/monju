@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "format": "prettier --write src",
-    "aspida:build": "aspida"
+    "aspida:build": "aspida",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@aspida/axios": "^1.10.2",

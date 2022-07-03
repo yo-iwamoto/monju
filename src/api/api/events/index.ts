@@ -1,5 +1,5 @@
 import { DefineMethods } from 'aspida';
-import type { Event } from '@/types/event';
+import type { Event } from '@/types/Event';
 
 export type Methods = DefineMethods<{
   get: {

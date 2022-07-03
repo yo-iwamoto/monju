@@ -1,22 +1,26 @@
 import { ControllerBase } from '../concerns/ControllerBase';
 import { restRequestMethod } from '@/server/lib/RESTRequestMethod';
+import { respond404 } from '@/server/lib/respondError';
 import { respondSuccess } from '@/server/lib/respondSuccess';
 import { getQuery } from '@/server/lib/getQuery';
 import { NextApiHandler } from 'next';
-import type { IDeleteEventService } from '@/server/services/events/DeleteEventService';
+import type { IShowEventService } from '@/server/services/events/ShowEventService';
 
-export class DeleteEventController extends ControllerBase<IDeleteEventService> {
-  method = restRequestMethod.delete;
+export class ShowEventController extends ControllerBase<IShowEventService> {
+  method = restRequestMethod.get;
 
   handle: NextApiHandler = async (req, res) => {
     const id = getQuery(req, 'id');
 
-    await this.service.execute(id);
+    const event = await this.service.execute(id);
+    if (event === null) {
+      return respond404(res);
+    }
 
     respondSuccess({
       res,
       data: {
-        message: 'deleted',
+        event,
       },
     });
   };

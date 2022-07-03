@@ -1,4 +1,6 @@
+import { aspida } from '../aspida';
+
 export const swrKeys = {
-  events: '/api/events',
-  event: (id: string) => `/events/${id}`,
+  events: aspida.api.events.$path,
+  event: (id: string) => aspida.api.events._id(id).$path,
 };

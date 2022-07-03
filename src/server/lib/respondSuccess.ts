@@ -7,4 +7,4 @@ type Args = {
   status?: 200 | 201;
 };
 
-export const respondSuccess = ({ res, data, status = 201 }: Args) => res.status(status).json(data);
+export const respondSuccess = ({ res, data, status = 200 }: Args) => res.status(status).json(data);

@@ -2,9 +2,9 @@ import { ControllerBase } from '../concerns/ControllerBase';
 import { restRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { respondSuccess } from '@/server/lib/respondSuccess';
 import { NextApiHandler } from 'next';
-import type { IndexEventService } from '@/server/services/events/IndexEventService';
+import type { IIndexEventService } from '@/server/services/events/IndexEventService';
 
-export class IndexEventsController extends ControllerBase<IndexEventService> {
+export class IndexEventsController extends ControllerBase<IIndexEventService> {
   method = restRequestMethod.get;
 
   handle: NextApiHandler = async (_req, res) => {

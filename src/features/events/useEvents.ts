@@ -1,8 +1,8 @@
 import { swrKeys } from '@/lib/swr/keys';
-import { aspida } from '@/lib/aspida';
+import { Methods } from '@/api/api/events';
 import useSWR from 'swr';
 
-type ResponseData = Awaited<ReturnType<typeof aspida.api.events.$get>>;
+type ResponseData = Methods['get']['resBody'];
 
 export const useEvents = () => {
   const { data, error, mutate } = useSWR<ResponseData>(swrKeys.events);

@@ -6,11 +6,11 @@ type Args = {
   userId: string;
 };
 
-export interface CreateEventService {
+export interface ICreateEventService {
   execute: (args: Args) => Promise<Event>;
 }
 
-export class CreateEventService extends ServiceBase {
+export class CreateEventService extends ServiceBase implements ICreateEventService {
   /**
    * insert into events
    *

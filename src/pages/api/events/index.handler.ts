@@ -4,8 +4,7 @@ import { IndexEventsController } from '@/server/controllers/events/IndexEventsCo
 import { IndexEventService } from '@/server/services/events/IndexEventService';
 import { CreateEventService } from '@/server/services/events/CreateEventService';
 
-// TODO: DI コンテナを抽象化
-export default createRequestResolver([
-  new IndexEventsController({ service: new IndexEventService() }),
-  new CreateEventController({ service: new CreateEventService() }),
-]);
+export default createRequestResolver({
+  GET: () => new IndexEventsController(new IndexEventService()),
+  POST: () => new CreateEventController(new CreateEventService()),
+});

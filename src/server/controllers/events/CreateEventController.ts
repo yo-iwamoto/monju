@@ -4,14 +4,14 @@ import { getUserId } from '@/server/lib/getUserId';
 import { respond400 } from '@/server/lib/respondError';
 import { respondSuccess } from '@/server/lib/respondSuccess';
 import { z } from 'zod';
-import type { CreateEventService } from '@/server/services/events/CreateEventService';
+import type { ICreateEventService } from '@/server/services/events/CreateEventService';
 import type { NextApiHandler } from 'next';
 
 const bodySchema = z.object({
   name: z.string(),
 });
 
-export class CreateEventController extends ControllerBase<CreateEventService> {
+export class CreateEventController extends ControllerBase<ICreateEventService> {
   public method = restRequestMethod.post;
 
   handle: NextApiHandler = async (req, res) => {

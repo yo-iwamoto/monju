@@ -16,6 +16,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           const prefix2 = `${PATH0}/${val2}`
 
           return {
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods1['get']['resBody']>(prefix, prefix2, GET, option).json(),
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods1['get']['resBody']>(prefix, prefix2, GET, option).json().then(r => r.body),
             delete: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods1['delete']['resBody']>(prefix, prefix2, DELETE, option).json(),
             $delete: (option?: { config?: T | undefined } | undefined) =>

@@ -1,35 +1,62 @@
-import { useHook } from './index.hook';
-import { signIn, signOut } from 'next-auth/react';
+import { View } from './index.view';
+import { useEvents } from '@/features/events/useEvents';
+import { useCreateEvent } from '@/features/events/useCreateEvent';
+import { useDeleteEvent } from '@/features/events/useDeleteEvent';
+import { createEventForm } from '@/forms/createEvent';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useCallback } from 'react';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import type { CreateEventForm } from '@/forms/createEvent';
 
 export default function Page() {
-  const { session, form, onSubmit, events, deleteAndMutateEvents } = useHook();
+  const { status: sessionStatus } = useSession();
+
+  const signInWithGitHub = useCallback(() => signIn('github'), []);
+
+  const { register, handleSubmit } = useForm<CreateEventForm>({ resolver: zodResolver(createEventForm) });
+
+  const { events, mutate: mutateEvents } = useEvents();
+
+  const deleteEvent = useDeleteEvent();
+
+  const createEvent = useCreateEvent();
+
+  const createAndMutateEvents = useCallback(
+    async (data: CreateEventForm) => {
+      const res = await createEvent(data);
+
+      if (events !== undefined) {
+        mutateEvents({ events: [...events, res.event] });
+      }
+    },
+    [createEvent, events, mutateEvents]
+  );
+
+  const onSubmit = handleSubmit(createAndMutateEvents);
+
+  const deleteAndMutateEvents = useCallback(
+    async (id: string) => {
+      await deleteEvent(id);
+
+      if (events !== undefined) {
+        mutateEvents({ events: events.filter((e) => e.id !== id) });
+      }
+    },
+    [deleteEvent, events, mutateEvents]
+  );
 
   return (
-    <>
-      <h1 className='text-2xl font-bold'>e-ticket</h1>
-      {session.status === 'unauthenticated' && (
-        <button type='button' onClick={() => signIn('github')}>
-          Sign in
-        </button>
-      )}
-      {session.status === 'authenticated' && (
-        <>
-          <p>{session.data.user?.name}</p>
-          <button type='button' onClick={() => signOut()}>
-            Sign out
-          </button>
-          <form onSubmit={onSubmit} className='flex flex-col'>
-            <input type='text' {...form.register('name')} className='rounded-md border' />
-            <button type='submit'>submit</button>
-          </form>
-          {events &&
-            events.map((event) => (
-              <p onClick={() => deleteAndMutateEvents(event.id)} key={event.id}>
-                {event.name}
-              </p>
-            ))}
-        </>
-      )}
-    </>
+    <View
+      {...{
+        sessionStatus,
+        signInWithGitHub,
+        signOut,
+        events,
+        register,
+        onSubmit,
+        deleteAndMutateEvents,
+      }}
+    />
   );
 }

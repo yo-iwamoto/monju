@@ -1,17 +1,17 @@
 import { ControllerBase } from '../concerns/ControllerBase';
 import { restRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { getUserId } from '@/server/lib/getUserId';
-import { CreateEventService } from '@/server/services/events/CreateEventService';
 import { respond400 } from '@/server/lib/respondError';
 import { respondSuccess } from '@/server/lib/respondSuccess';
 import { z } from 'zod';
+import type { CreateEventService } from '@/server/services/events/CreateEventService';
 import type { NextApiHandler } from 'next';
 
 const bodySchema = z.object({
   name: z.string(),
 });
 
-export class CreateEventController extends ControllerBase {
+export class CreateEventController extends ControllerBase<CreateEventService> {
   public method = restRequestMethod.post;
 
   handle: NextApiHandler = async (req, res) => {
@@ -23,8 +23,7 @@ export class CreateEventController extends ControllerBase {
     const userId = await getUserId(req);
     const data = { name: parseResult.data.name, userId };
 
-    const service = new CreateEventService();
-    const event = await service.execute(data);
+    const event = await this.service.execute(data);
 
     respondSuccess({
       res,

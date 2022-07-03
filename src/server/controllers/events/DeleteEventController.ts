@@ -1,11 +1,11 @@
 import { ControllerBase } from '../concerns/ControllerBase';
 import { restRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { ServerError } from '@/server/lib/ServerError';
-import { DeleteEventService } from '@/server/services/events/DeleteEventService';
 import { respondSuccess } from '@/server/lib/respondSuccess';
 import { NextApiHandler } from 'next';
+import type { DeleteEventService } from '@/server/services/events/DeleteEventService';
 
-export class DeleteEventController extends ControllerBase {
+export class DeleteEventController extends ControllerBase<DeleteEventService> {
   method = restRequestMethod.delete;
 
   handle: NextApiHandler = async (req, res) => {
@@ -14,8 +14,7 @@ export class DeleteEventController extends ControllerBase {
       throw ServerError.invalidRequest('URLが正しくありません');
     }
 
-    const service = new DeleteEventService();
-    await service.execute(id);
+    await this.service.execute(id);
 
     respondSuccess({
       res,

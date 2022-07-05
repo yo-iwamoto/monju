@@ -31,3 +31,5 @@ class PrismaClientSingleton {
 // development のときシングルトンを使用する
 export const getPrisma = () =>
   NODE_ENV === 'development' ? PrismaClientSingleton.getInstance() : instanciatePrismaClient();
+
+export const prisma = instanciatePrismaClient();

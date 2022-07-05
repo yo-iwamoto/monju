@@ -1,9 +1,1 @@
-export const restRequestMethod = {
-  get: 'GET',
-  post: 'POST',
-  put: 'PUT',
-  patch: 'PATCH',
-  delete: 'DELETE',
-} as const;
-
-export type RESTRequestMethod = typeof restRequestMethod[keyof typeof restRequestMethod];
+export type RESTRequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';

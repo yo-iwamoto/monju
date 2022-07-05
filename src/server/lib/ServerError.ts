@@ -1,4 +1,4 @@
-import { respond400, respond401, respond403, respond405, respond500 } from '@/server/lib/respondError';
+import { respond400, respond401, respond403, respond405, respond500 } from '@/server/helpers/respondError';
 import { NextApiResponse } from 'next';
 
 export const serverErrorCode = {

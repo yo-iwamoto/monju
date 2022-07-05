@@ -1,10 +1,8 @@
-import { DeleteEventController } from '@/server/controllers/events/DeleteEventController';
-import { ShowEventController } from '@/server/controllers/events/ShowEventController';
-import { createRequestResolver } from '@/server/lib/createRequestResolver';
-import { DeleteEventService } from '@/server/services/events/DeleteEventService';
-import { ShowEventService } from '@/server/services/events/ShowEventService';
+import { handleDeleteEvent } from '@/server/controllers/events/handleDeleteEvent';
+import { handleShowEvent } from '@/server/controllers/events/handleShowEvent';
+import { createHandler } from '@/server/lib/createHandler';
 
-export default createRequestResolver({
-  GET: () => new ShowEventController(new ShowEventService()),
-  DELETE: () => new DeleteEventController(new DeleteEventService()),
+export default createHandler({
+  GET: handleShowEvent,
+  DELETE: handleDeleteEvent,
 });

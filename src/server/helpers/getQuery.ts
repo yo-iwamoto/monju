@@ -4,7 +4,7 @@ import type { NextApiRequest } from 'next';
 /**
  * @throws ServerError
  */
-export const getQuery = (req: NextApiRequest, name: string) => {
+export const getQuery = (req: NextApiRequest, name = 'id') => {
   const queryValue = req.query[name];
   if (typeof queryValue !== 'string') {
     throw ServerError.invalidRequest('invalid-uri');

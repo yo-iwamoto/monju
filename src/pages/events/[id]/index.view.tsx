@@ -1,4 +1,4 @@
-import type { Event } from '@/types/Event';
+import type { Event } from '@/types/Resource';
 import type { FC } from 'react';
 
 type Props = {

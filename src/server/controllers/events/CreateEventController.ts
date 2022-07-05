@@ -1,5 +1,4 @@
 import { ControllerBase } from '../concerns/ControllerBase';
-import { restRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { getUserId } from '@/server/lib/getUserId';
 import { respond400 } from '@/server/lib/respondError';
 import { respondSuccess } from '@/server/lib/respondSuccess';
@@ -12,8 +11,6 @@ const bodySchema = z.object({
 });
 
 export class CreateEventController extends ControllerBase<ICreateEventService> {
-  public method = restRequestMethod.post;
-
   handle: NextApiHandler = async (req, res) => {
     const parseResult = bodySchema.safeParse(req.body);
     if (!parseResult.success) {

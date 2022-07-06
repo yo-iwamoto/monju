@@ -1,15 +1,14 @@
-import type { CreateEventForm } from '@/forms/createEventForm';
-import type { UseFormRegister } from 'react-hook-form';
+import type { FieldAttributes } from '@/types/FieldAttributes';
 import type { Event } from '@/types/Resource';
-import type { FC, FormEventHandler } from 'react';
 import type { SessionStatus } from '@/types/SessionStatus';
+import type { FC, FormEventHandler } from 'react';
 
 type Props = {
   sessionStatus: SessionStatus;
   signInWithGitHub: () => void;
   signOut: () => void;
   events: Event[] | undefined;
-  register: UseFormRegister<CreateEventForm>;
+  formNameAttributes: FieldAttributes;
   onSubmit: FormEventHandler;
   deleteAndMutateEvents: (id: string) => void;
 };
@@ -19,7 +18,7 @@ export const View: FC<Props> = ({
   signInWithGitHub,
   signOut,
   events,
-  register,
+  formNameAttributes,
   onSubmit,
   deleteAndMutateEvents,
 }) => {
@@ -32,7 +31,7 @@ export const View: FC<Props> = ({
             Sign out
           </button>
           <form onSubmit={onSubmit} className='flex flex-col'>
-            <input type='text' {...register('name')} className='rounded-md border' />
+            <input type='text' {...formNameAttributes} className='rounded-md border' />
             <button type='submit'>submit</button>
           </form>
           {events &&

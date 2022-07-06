@@ -3,10 +3,9 @@ import { useCreateEvent } from '@/features/events/useCreateEvent';
 import { useDeleteEvent } from '@/features/events/useDeleteEvent';
 import { useEvents } from '@/features/events/useEvents';
 import { createEventForm } from '@/forms/createEventForm';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useFormWithSchema } from '@/hooks/useFormWithSchema';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
+import { useCallback, useMemo } from 'react';
 import type { CreateEventForm } from '@/forms/createEventForm';
 
 export default function Page() {
@@ -14,7 +13,9 @@ export default function Page() {
 
   const signInWithGitHub = useCallback(() => signIn('github'), []);
 
-  const { register, handleSubmit } = useForm<CreateEventForm>({ resolver: zodResolver(createEventForm) });
+  const { register, handleSubmit } = useFormWithSchema<CreateEventForm>(createEventForm);
+
+  const formNameAttributes = useMemo(() => register('name'), [register]);
 
   const { events, mutate: mutateEvents } = useEvents();
 
@@ -53,8 +54,8 @@ export default function Page() {
         signInWithGitHub,
         signOut,
         events,
-        register,
         onSubmit,
+        formNameAttributes,
         deleteAndMutateEvents,
       }}
     />

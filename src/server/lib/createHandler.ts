@@ -22,6 +22,7 @@ export const createHandler = (methodToHandler: methodToHandler) => {
     try {
       return await handle(req, res);
     } catch (err) {
+      console.error(err);
       if (err instanceof ServerError) {
         return err.respondError(res);
       } else {

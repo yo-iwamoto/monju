@@ -1,6 +1,6 @@
-import { swrKeys } from '@/lib/swr/keys';
 import useSWR from 'swr';
 import type { Methods } from '@/api/api/events/_id@string';
+import { swrKeys } from '@/lib/swr/keys';
 
 type ResponseData = Methods['get']['resBody'];
 

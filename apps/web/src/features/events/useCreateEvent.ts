@@ -1,5 +1,5 @@
-import { aspida } from '@/lib/aspida';
 import { useCallback } from 'react';
+import { aspida } from '@/lib/aspida';
 
 export const useCreateEvent = () => {
   return useCallback((data: { name: string }) => {

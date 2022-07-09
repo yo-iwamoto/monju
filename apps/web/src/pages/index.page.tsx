@@ -1,12 +1,12 @@
 import { View } from './index.view';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useCallback, useMemo } from 'react';
+import type { CreateEventForm } from '@/forms/createEventForm';
 import { useCreateEvent } from '@/features/events/useCreateEvent';
 import { useDeleteEvent } from '@/features/events/useDeleteEvent';
 import { useEvents } from '@/features/events/useEvents';
 import { createEventForm } from '@/forms/createEventForm';
 import { useFormWithSchema } from '@/hooks/useFormWithSchema';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import { useCallback, useMemo } from 'react';
-import type { CreateEventForm } from '@/forms/createEventForm';
 
 export default function Page() {
   const { status: sessionStatus } = useSession();

@@ -9,7 +9,7 @@ export const View: FC<Props> = ({ event }) => {
   return (
     <>
       <h1>Hello here an event</h1>
-      <p>{event?.id}</p>
+      <p>{event?.title}</p>
     </>
   );
 };

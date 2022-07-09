@@ -18,9 +18,11 @@ export const View: FC<Props> = ({ isShown, open, close, onSubmit, formNameAttrib
       <Button onClick={open}>イベントを作成</Button>
       <Dialog title='イベントを作成' close={close} isShown={isShown}>
         <form onSubmit={onSubmit} className='flex flex-col'>
-          <div className='mb-2'>
-            <Input {...formNameAttributes} />
-          </div>
+          <label className='mb-2'>
+            <p className='text-sm'>タイトル</p>
+
+            <Input {...formNameAttributes} placeholder='ML Ops の最先端を学ぼう' />
+          </label>
 
           <div className='flex justify-end'>
             <Button type='submit'>作成</Button>

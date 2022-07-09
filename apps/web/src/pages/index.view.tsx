@@ -13,7 +13,7 @@ export const View: FC<Props> = ({ events }) => {
       {events &&
         events.map((event) => (
           <Link key={event.id} href={pagesPath.events._id(event.id).$url()}>
-            <p key={event.id}>{event.name}</p>
+            <p key={event.id}>{event.title}</p>
           </Link>
         ))}
     </>

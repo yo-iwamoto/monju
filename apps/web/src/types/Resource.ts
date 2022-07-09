@@ -1,3 +1,9 @@
+type ModelBase = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type User = {
   id: string;
   name: string | null;
@@ -6,10 +12,22 @@ export type User = {
   image: string | null;
 };
 
-export type Event = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  name: string;
+export type Event = ModelBase & {
+  title: string;
+  userId: string;
+};
+
+export type EventImage = ModelBase & {
+  url: string;
+  altText: string;
+};
+
+export type Following = ModelBase & {
+  followedId: string;
+  followsId: string;
+};
+
+export type Participation = ModelBase & {
+  eventId: string;
   userId: string;
 };

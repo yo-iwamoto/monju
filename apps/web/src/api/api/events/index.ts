@@ -10,7 +10,7 @@ export type Methods = DefineMethods<{
 
   post: {
     reqBody: {
-      name: string;
+      title: string;
     };
     resBody: {
       event: Event;

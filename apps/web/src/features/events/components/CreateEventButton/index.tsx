@@ -34,7 +34,7 @@ export const CreateEventButton: FC = () => {
   }, [isShown]);
 
   const formNameAttributes = useMemo<FieldAttributes & { ref: RefCallback<HTMLInputElement> }>(() => {
-    const hookFormAttrs = register('name');
+    const hookFormAttrs = register('title');
     return {
       ...hookFormAttrs,
       ref: (e) => {

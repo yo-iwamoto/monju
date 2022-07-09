@@ -6,7 +6,7 @@ export const useCreateEvent = () => {
   const { events, mutate: mutateEvents } = useEvents();
 
   return useCallback(
-    async (data: { name: string }) => {
+    async (data: { title: string }) => {
       if (events === undefined) {
         return;
       }

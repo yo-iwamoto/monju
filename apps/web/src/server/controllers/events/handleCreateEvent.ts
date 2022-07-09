@@ -4,9 +4,11 @@ import { createEvent } from '@/server/services/events/createEvent';
 import { z } from 'zod';
 import type { NextApiHandler } from 'next';
 
-const bodySchema = z.object({
-  name: z.string(),
-});
+const bodySchema = z
+  .object({
+    title: z.string(),
+  })
+  .strict();
 
 export const handleCreateEvent: NextApiHandler = async (req, res) => {
   const parseResult = bodySchema.safeParse(req.body);
@@ -15,11 +17,11 @@ export const handleCreateEvent: NextApiHandler = async (req, res) => {
   }
 
   const userId = await getUserId(req);
-  const { name } = parseResult.data;
+  const { title } = parseResult.data;
 
   const event = await createEvent({
     userId,
-    name,
+    title,
   });
 
   res.status(201).json({

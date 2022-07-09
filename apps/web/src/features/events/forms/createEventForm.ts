@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const createEventForm = z
   .object({
-    name: z.string(),
+    title: z.string(),
   })
   .strict();
 

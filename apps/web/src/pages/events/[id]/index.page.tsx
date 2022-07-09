@@ -1,6 +1,6 @@
 import { View } from './index.view';
-import { useEvent } from '@/features/events/useEvent';
 import { usePageQuery } from '@/hooks/usePageQuery';
+import { useEvent } from '@/features/events/hooks/useEvent';
 
 export default function Page() {
   const idQuery = usePageQuery('id');

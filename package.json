@@ -2,6 +2,10 @@
   "name": "monju",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "g:lint": "cd $INIT_CWD && eslint --fix src/**/*.{ts,tsx}",
+    "g:format": "cd $INIT_CWD && prettier --write src"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",

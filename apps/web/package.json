@@ -8,8 +8,8 @@
     "dev:path": "pathpida --enableStatic --watch",
     "build": "pathpida --enableStatic && next build",
     "start": "next start",
-    "lint": "eslint --fix src/**/*.{ts,tsx}",
-    "format": "prettier --write src",
+    "lint": "yarn g:lint",
+    "format": "yarn g:format",
     "aspida:build": "aspida",
     "typecheck": "tsc --noEmit"
   },

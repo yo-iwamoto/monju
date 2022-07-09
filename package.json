@@ -3,8 +3,8 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "g:lint": "cd $INIT_CWD && eslint --fix src/**/*.{ts,tsx}",
-    "g:format": "cd $INIT_CWD && prettier --write src"
+    "g:lint": "cd $INIT_CWD && run eslint --fix src/**/*.{ts,tsx}",
+    "g:format": "cd $INIT_CWD && run prettier --write src"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.14.0",
@@ -16,12 +16,12 @@
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
-    "prettier-plugin-tailwindcss": "^0.1.8",
-    "typescript": "^4.6.2"
+    "prettier-plugin-tailwindcss": "^0.1.8"
   },
   "workspaces": {
     "packages": [
-      "apps/*"
+      "apps/*",
+      "packages/*"
     ]
   },
   "packageManager": "yarn@3.2.1"

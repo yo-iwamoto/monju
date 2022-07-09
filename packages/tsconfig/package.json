@@ -1,0 +1,8 @@
+{
+  "name": "@monju/tsconfig",
+  "license": "UNLICENSED",
+  "private": true,
+  "files": [
+    "tsconfig.json"
+  ]
+}

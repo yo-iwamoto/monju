@@ -1,5 +1,5 @@
 export const pagesPath = {
-  events: {
+  "events": {
     _id: (id: string | number) => ({
       $url: (url?: { hash?: string }) => ({ pathname: '/events/[id]' as const, query: { id }, hash: url?.hash })
     })

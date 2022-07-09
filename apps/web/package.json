@@ -6,7 +6,7 @@
     "dev": "run-p 'dev:*'",
     "dev:next": "next dev",
     "dev:path": "pathpida --enableStatic --watch",
-    "build": "pathpida --enableStatic && next build",
+    "build": "pathpida --enableStatic && prisma generate && next build",
     "start": "next start",
     "lint": "yarn g:lint",
     "format": "yarn g:format",

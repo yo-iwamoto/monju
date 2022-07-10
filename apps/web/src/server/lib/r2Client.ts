@@ -8,12 +8,3 @@ export const r2Client = new S3Client({
   secretAccessKey: R2_SECRET_ACCESS_KEY,
   signatureVersion: 'v4',
 });
-
-export const upload = async () => {
-  const signedUrl = await r2Client.getSignedUrlPromise('putObject', {
-    Bucket: 'my-bucket',
-    Key: `${new Date().getTime()}.png`,
-    Expires: 3600,
-  });
-  return signedUrl;
-};

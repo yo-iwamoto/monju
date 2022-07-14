@@ -1,5 +1,5 @@
-import { ServerError } from '@/server/lib/ServerError';
 import type { NextApiRequest } from 'next';
+import { ServerError } from '@/server/lib/ServerError';
 
 /**
  * @throws ServerError

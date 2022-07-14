@@ -1,6 +1,6 @@
+import type { FC } from 'react';
 import { Button } from '@/components/Button';
 import { Dialog } from '@/components/Dialog';
-import type { FC } from 'react';
 
 type Props = {
   isShown: boolean;

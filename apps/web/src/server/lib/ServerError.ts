@@ -1,5 +1,5 @@
-import { respond400, respond401, respond403, respond405, respond500 } from '@/server/helpers/respondError';
 import { NextApiResponse } from 'next';
+import { respond400, respond401, respond403, respond405, respond500 } from '@/server/helpers/respondError';
 
 export const serverErrorCode = {
   invalidRequest: 'invalid-request',

@@ -1,7 +1,7 @@
-import { Link } from '@/components/Link';
-import { pagesPath } from '@/lib/$path';
 import { FC } from 'react';
 import type { Event } from '@/types/Resource';
+import { Link } from '@/components/Link';
+import { pagesPath } from '@/lib/$path';
 
 type Props = {
   events: Event[] | undefined;

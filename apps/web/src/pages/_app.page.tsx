@@ -1,9 +1,9 @@
+import { SWRConfig } from 'swr';
 import '@/styles/global.css';
+import { SessionProvider } from 'next-auth/react';
+import type { AppProps } from 'next/app';
 import { fetcher } from '@/lib/swr/fetcher';
 import { Layout } from '@/components/Layout';
-import { SessionProvider } from 'next-auth/react';
-import { SWRConfig } from 'swr';
-import type { AppProps } from 'next/app';
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (

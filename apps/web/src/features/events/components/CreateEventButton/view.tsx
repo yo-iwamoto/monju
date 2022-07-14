@@ -1,8 +1,8 @@
+import type { FC, FormEventHandler } from 'react';
+import type { FieldAttributes } from '@/types/FieldAttributes';
 import { Button } from '@/components/Button';
 import { Dialog } from '@/components/Dialog';
 import { Input } from '@/components/Input';
-import type { FieldAttributes } from '@/types/FieldAttributes';
-import type { FC, FormEventHandler } from 'react';
 
 type Props = {
   isShown: boolean;

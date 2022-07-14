@@ -3,7 +3,7 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "g:lint": "cd $INIT_CWD && eslint --fix src/**/*.{ts,tsx}",
+    "g:lint": "cd $INIT_CWD && eslint --fix src --ext .ts,tsx",
     "g:format": "cd $INIT_CWD && prettier --write src"
   },
   "devDependencies": {

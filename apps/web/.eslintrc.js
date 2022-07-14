@@ -20,6 +20,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off', // for next/link
     'react/display-name': 'off',
     'react/prop-types': 'off',
+    'no-html-link-for-pages': 'off',
 
     // custom
     'import/order': [

@@ -10,9 +10,10 @@ type Props = {
   close: () => void;
   onSubmit: FormEventHandler;
   formNameAttributes: FieldAttributes;
+  isCreating: boolean;
 };
 
-export const View: FC<Props> = ({ isShown, open, close, onSubmit, formNameAttributes }) => {
+export const View: FC<Props> = ({ isShown, open, close, onSubmit, formNameAttributes, isCreating }) => {
   return (
     <>
       <Button onClick={open}>イベントを作成</Button>
@@ -25,7 +26,9 @@ export const View: FC<Props> = ({ isShown, open, close, onSubmit, formNameAttrib
           </label>
 
           <div className='flex justify-end'>
-            <Button type='submit'>作成</Button>
+            <Button type='submit' isLoading={isCreating}>
+              作成
+            </Button>
           </div>
         </form>
       </Dialog>

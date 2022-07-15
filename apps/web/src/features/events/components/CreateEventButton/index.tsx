@@ -10,15 +10,15 @@ export const CreateEventButton: FC = () => {
 
   const { register, handleSubmit, reset: resetForm } = useFormWithSchema<CreateEventForm>(createEventForm);
 
-  const createEvent = useCreateEvent();
+  const { create, isCreating } = useCreateEvent();
 
   const createEventAndCloseDialog = useCallback(
     async (data: CreateEventForm) => {
-      await createEvent(data);
+      await create(data);
       resetForm();
       setIsShown(false);
     },
-    [createEvent, resetForm]
+    [create, resetForm]
   );
 
   const onSubmit = handleSubmit(createEventAndCloseDialog);
@@ -52,6 +52,7 @@ export const CreateEventButton: FC = () => {
         close: () => setIsShown(false),
         onSubmit,
         formNameAttributes,
+        isCreating,
       }}
     />
   );

@@ -1,12 +1,15 @@
 import { useEvents } from '@/features/events/hooks/useEvents';
 import { aspida } from '@/lib/aspida';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useCreateEvent = () => {
   const { events, mutate: mutateEvents } = useEvents();
 
-  return useCallback(
+  const [isCreating, setIsCreating] = useState(false);
+
+  const create = useCallback(
     async (data: { title: string }) => {
+      setIsCreating(true);
       if (events === undefined) {
         return;
       }
@@ -17,8 +20,14 @@ export const useCreateEvent = () => {
         events: [...events, event],
       });
 
+      setIsCreating(false);
       return event;
     },
     [events, mutateEvents]
   );
+
+  return {
+    create,
+    isCreating,
+  };
 };

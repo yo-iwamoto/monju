@@ -1,7 +1,7 @@
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { RESTRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { respond400, respond405, respond500 } from '@/server/helpers/respondError';
 import { ServerError } from '@/server/lib/ServerError';
+import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 type methodToHandler = Partial<{
   [method in RESTRequestMethod]: NextApiHandler;

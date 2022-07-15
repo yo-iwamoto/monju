@@ -57,15 +57,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/react@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@heroicons/react@npm:1.0.6"
-  peerDependencies:
-    react: ">= 16"
-  checksum: 372b1eda3ce735ef069777bc96304f70de585ebb71a6d1cedc121bb695f9bca235619112e3ee14e8779e95a03096813cbbe3b755927a54b7580d1ce084fa4096
-  languageName: node
-  linkType: hard
-
 "@hookform/resolvers@npm:^2.8.8":
   version: 2.9.5
   resolution: "@hookform/resolvers@npm:2.9.5"
@@ -110,7 +101,6 @@ __metadata:
   resolution: "@monju/web@workspace:apps/web"
   dependencies:
     "@aspida/axios": ^1.10.2
-    "@heroicons/react": ^1.0.6
     "@hookform/resolvers": ^2.8.8
     "@monju/config": "link:../../packages/tsconfig"
     "@next-auth/prisma-adapter": ^1.0.3
@@ -131,6 +121,7 @@ __metadata:
     react: ^18.0.0
     react-dom: ^18.0.0
     react-hook-form: ^7.31.1
+    react-icons: ^4.4.0
     recoil: ^0.6.1
     swr: ^1.2.2
     tailwindcss: ^3.0.23
@@ -3515,6 +3506,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
   checksum: ec8f938b5af32148956edc9a87b6a0a99cc305617925608961cf4352ad1a786daea9fdc4d15106aea2821937d27367a69ab525882f07c0bb7ea45fba5dbf8ff2
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "react-icons@npm:4.4.0"
+  peerDependencies:
+    react: "*"
+  checksum: dd93a1dcc8ac8a3cf46a2b33e80b586fa967331fa5fcb90d061abf276155a8363a331643e203d67cb9bab4261d00a757da854bcce1fce2c6e4258bf3e33f711b
   languageName: node
   linkType: hard
 

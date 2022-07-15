@@ -1,8 +1,8 @@
-import { z } from 'zod';
-import type { NextApiHandler } from 'next';
 import { getQuery } from '@/server/helpers/getQuery';
 import { respond400 } from '@/server/helpers/respondError';
 import { updateUserName } from '@/server/services/users/updateUser';
+import { z } from 'zod';
+import type { NextApiHandler } from 'next';
 
 const bodySchema = z
   .object({

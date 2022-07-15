@@ -1,7 +1,7 @@
-import { NextApiRequest } from 'next';
-import { getSession } from 'next-auth/react';
 import { prisma } from '@/server/lib/prisma';
 import { ServerError } from '@/server/lib/ServerError';
+import { NextApiRequest } from 'next';
+import { getSession } from 'next-auth/react';
 
 export const getUserId = async (req: NextApiRequest) => {
   const email = (await getSession({ req }))?.user?.email;

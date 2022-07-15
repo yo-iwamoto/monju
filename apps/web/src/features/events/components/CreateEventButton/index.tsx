@@ -1,24 +1,24 @@
 import { View } from './view';
-import { FC, RefCallback, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createEventForm, type CreateEventForm } from '@/features/events/forms/createEventForm';
 import { useCreateEvent } from '@/features/events/hooks/useCreateEvent';
 import { useFormWithSchema } from '@/hooks/useFormWithSchema';
 import { FieldAttributes } from '@/types/FieldAttributes';
+import { FC, RefCallback, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export const CreateEventButton: FC = () => {
   const [isShown, setIsShown] = useState(false);
 
   const { register, handleSubmit, reset: resetForm } = useFormWithSchema<CreateEventForm>(createEventForm);
 
-  const createEvent = useCreateEvent();
+  const { create, isCreating } = useCreateEvent();
 
   const createEventAndCloseDialog = useCallback(
     async (data: CreateEventForm) => {
-      await createEvent(data);
+      await create(data);
       resetForm();
       setIsShown(false);
     },
-    [createEvent, resetForm]
+    [create, resetForm]
   );
 
   const onSubmit = handleSubmit(createEventAndCloseDialog);
@@ -52,6 +52,7 @@ export const CreateEventButton: FC = () => {
         close: () => setIsShown(false),
         onSubmit,
         formNameAttributes,
+        isCreating,
       }}
     />
   );

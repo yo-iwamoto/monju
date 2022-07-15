@@ -1,6 +1,6 @@
 import { View } from './view';
-import { FC, useState } from 'react';
 import { useSignIn } from '@/features/auth/hooks/useSignIn';
+import { FC, useState } from 'react';
 
 export const SignInButton: FC = () => {
   const [isShown, setIsShown] = useState(false);

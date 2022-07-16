@@ -7,13 +7,10 @@ export const usePageQuery = (name: string) => {
   const [query, setQuery] = useState<string>();
 
   useEffect(() => {
-    console.log(router.query);
     const queryValue = router.query[name];
-    if (typeof queryValue !== 'string') {
-      return;
+    if (typeof queryValue === 'string') {
+      setQuery(queryValue);
     }
-
-    setQuery(queryValue);
   }, [name, router.query]);
 
   return query;

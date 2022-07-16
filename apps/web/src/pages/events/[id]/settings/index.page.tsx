@@ -1,6 +1,6 @@
 import View from './index.view';
-import { usePageQuery } from '@/hooks/usePageQuery';
 import { useEvent } from '@/features/events/hooks/useEvent';
+import { usePageQuery } from '@/hooks/usePageQuery';
 
 export default function () {
   const idQuery = usePageQuery('id');
@@ -12,11 +12,5 @@ export default function () {
     return <p>error!</p>;
   }
 
-  return (
-    <View
-      {...{
-        event,
-      }}
-    />
-  );
+  return <View event={event} />;
 }

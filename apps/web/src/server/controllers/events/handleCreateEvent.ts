@@ -4,11 +4,9 @@ import { createEvent } from '@/server/services/events/createEvent';
 import { z } from 'zod';
 import type { NextApiHandler } from 'next';
 
-const bodySchema = z
-  .object({
-    title: z.string(),
-  })
-  .strict();
+const bodySchema = z.object({
+  title: z.string(),
+});
 
 export const handleCreateEvent: NextApiHandler = async (req, res) => {
   const parseResult = bodySchema.safeParse(req.body);

@@ -4,7 +4,7 @@ import type { z } from 'zod';
 
 export const useFormWithSchema = <F extends FieldValues>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  schema: z.ZodObject<any, 'strict'>,
+  schema: z.ZodObject<any>,
   defaultValues?: DeepPartial<F>
 ) =>
   useForm<F>({

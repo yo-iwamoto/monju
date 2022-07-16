@@ -1,4 +1,4 @@
-import type { Event } from '@/types/Resource';
+import type { Event } from '@/types/Api';
 import type { DefineMethods } from 'aspida';
 
 export type Methods = DefineMethods<{

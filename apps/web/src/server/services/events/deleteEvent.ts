@@ -1,8 +1,14 @@
 import { prisma } from '@/server/lib/prisma';
 
-export const deleteEvent = async ({ id }: { id: string }) =>
-  prisma.event.delete({
+// TODO: 物理削除オプション
+export const deleteEvent = async ({ id }: { id: string }) => {
+  const now = new Date();
+  return prisma.event.update({
     where: {
       id,
     },
+    data: {
+      deletedAt: now,
+    },
   });
+};

@@ -1,21 +1,10 @@
-import { Link } from '@/components/Link';
-import { pagesPath } from '@/lib/$path';
-import { FC } from 'react';
-import type { Event } from '@/types/Resource';
+import { EventCard } from './components/EventCard';
+import type { Event } from '@/types/Api';
 
 type Props = {
   events: Event[] | undefined;
 };
 
-export const View: FC<Props> = ({ events }) => {
-  return (
-    <>
-      {events &&
-        events.map((event) => (
-          <Link key={event.id} href={pagesPath.events._id(event.id).$url()}>
-            <p key={event.id}>{event.title}</p>
-          </Link>
-        ))}
-    </>
-  );
-};
+export default function ({ events }: Props) {
+  return <>{events && events.map((event) => <EventCard key={event.id} event={event} />)}</>;
+}

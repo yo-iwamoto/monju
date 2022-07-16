@@ -1,4 +1,4 @@
-import type { User } from '@/types/Resource';
+import type { User } from '@/types/Api';
 import type { DefineMethods } from 'aspida';
 
 export type Methods = DefineMethods<{

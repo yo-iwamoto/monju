@@ -4,11 +4,9 @@ import { updateUserName } from '@/server/services/users/updateUser';
 import { z } from 'zod';
 import type { NextApiHandler } from 'next';
 
-const bodySchema = z
-  .object({
-    name: z.string(),
-  })
-  .strict();
+const bodySchema = z.object({
+  name: z.string(),
+});
 
 export const handleUpdateUserName: NextApiHandler = async (req, res) => {
   const id = getQuery(req);

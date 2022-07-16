@@ -3,23 +3,20 @@ import { createEventForm, type CreateEventForm } from '@/features/events/forms/c
 import { useCreateEvent } from '@/features/events/hooks/useCreateEvent';
 import { useFormWithSchema } from '@/hooks/useFormWithSchema';
 import { FieldAttributes } from '@/types/FieldAttributes';
+import { pagesPath } from '@/lib/$path';
 import { FC, RefCallback, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export const CreateEventButton: FC = () => {
+  const router = useRouter();
+
   const [isShown, setIsShown] = useState(false);
 
   const { register, handleSubmit, reset: resetForm } = useFormWithSchema<CreateEventForm>(createEventForm);
 
-  const { create, isCreating } = useCreateEvent();
+  const { create, isCreating, result } = useCreateEvent();
 
-  const createEventAndCloseDialog = useCallback(
-    async (data: CreateEventForm) => {
-      await create(data);
-      resetForm();
-      setIsShown(false);
-    },
-    [create, resetForm]
-  );
+  const createEventAndCloseDialog = useCallback((data: CreateEventForm) => create(data), [create]);
 
   const onSubmit = handleSubmit(createEventAndCloseDialog);
 
@@ -43,6 +40,14 @@ export const CreateEventButton: FC = () => {
       },
     };
   }, [register]);
+
+  useEffect(() => {
+    if (result !== undefined) {
+      resetForm();
+      setIsShown(false);
+      router.push(pagesPath.events._id(result.event.id).settings.$url());
+    }
+  }, [resetForm, result, router]);
 
   return (
     <View

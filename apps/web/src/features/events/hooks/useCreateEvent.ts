@@ -1,33 +1,20 @@
-import { useEvents } from '@/features/events/hooks/useEvents';
+import { useLocalLoading } from '@/hooks/useLocalLoading';
 import { aspida } from '@/lib/aspida';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 export const useCreateEvent = () => {
-  const { events, mutate: mutateEvents } = useEvents();
-
-  const [isCreating, setIsCreating] = useState(false);
+  const [isCreating, load, result] = useLocalLoading<ReturnType<typeof aspida.api.events.$post>>();
 
   const create = useCallback(
-    async (data: { title: string }) => {
-      setIsCreating(true);
-      if (events === undefined) {
-        return;
-      }
-
-      const { event } = await aspida.api.events.$post({ body: data });
-
-      mutateEvents({
-        events: [...events, event],
-      });
-
-      setIsCreating(false);
-      return event;
+    (data: { title: string }) => {
+      load(() => aspida.api.events.$post({ body: data }));
     },
-    [events, mutateEvents]
+    [load]
   );
 
   return {
     create,
     isCreating,
+    result,
   };
 };

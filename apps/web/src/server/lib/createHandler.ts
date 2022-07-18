@@ -1,5 +1,5 @@
-import { RESTRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { respond400, respond405, respond500 } from '@/server/helpers/respondError';
+import { RESTRequestMethod } from '@/server/lib/RESTRequestMethod';
 import { ServerError } from '@/server/lib/ServerError';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
@@ -22,9 +22,8 @@ export const createHandler = (methodToHandler: methodToHandler) => {
     try {
       return await handle(req, res);
     } catch (err) {
-      console.error(err);
       if (err instanceof ServerError) {
-        return err.respondError(res);
+        err.respondError(res);
       } else {
         return respond500(res);
       }

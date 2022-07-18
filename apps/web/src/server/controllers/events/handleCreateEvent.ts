@@ -14,7 +14,7 @@ export const handleCreateEvent: NextApiHandler = async (req, res) => {
     return respond400(res);
   }
 
-  const userId = await getUserId(req);
+  const userId = await getUserId.apiRoutes(req, res);
   const { title } = parseResult.data;
 
   const event = await createEvent({

@@ -1,13 +1,14 @@
+import { Methods } from '@/api/api/events';
 import { useLocalLoading } from '@/hooks/useLocalLoading';
 import { aspida } from '@/lib/aspida';
 import { useCallback } from 'react';
 
 export const useCreateEvent = () => {
-  const [isCreating, load, result] = useLocalLoading<ReturnType<typeof aspida.api.events.$post>>();
+  const [isCreating, load] = useLocalLoading<Methods['post']['resBody']>();
 
   const create = useCallback(
     (data: { title: string }) => {
-      load(() => aspida.api.events.$post({ body: data }));
+      return load(() => aspida.api.events.$post({ body: data }));
     },
     [load]
   );
@@ -15,6 +16,5 @@ export const useCreateEvent = () => {
   return {
     create,
     isCreating,
-    result,
   };
 };

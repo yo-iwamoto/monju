@@ -30,6 +30,7 @@
     "react-icons": "^4.4.0",
     "recoil": "^0.6.1",
     "swr": "^1.2.2",
+    "ts-pattern": "^4.0.5",
     "zod": "^3.17.3"
   },
   "devDependencies": {

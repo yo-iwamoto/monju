@@ -8,7 +8,7 @@ type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> & {
 export const Button: FC<Props> = ({ children, isLoading = false, ...props }) => {
   return (
     <button
-      className='h-9 rounded-md bg-teal-500 px-2 py-1.5 text-white shadow-md transition-all hover:bg-teal-400'
+      className='h-8 rounded-md bg-teal-500 px-2 py-1.5 text-sm text-white shadow-md transition-all hover:bg-teal-400'
       {...props}
     >
       {isLoading ? <FaCircleNotch className='animate-spin text-white' /> : children}

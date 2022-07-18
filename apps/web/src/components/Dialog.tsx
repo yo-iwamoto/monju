@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const Dialog: FC<Props> = ({ title, description = '', isShown, close, children }) => {
+export const Dialog: FC<Props> = ({ title, description, isShown = false, close, children }) => {
   return (
     <>
       {isShown && (

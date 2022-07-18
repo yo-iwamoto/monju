@@ -22,6 +22,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-html-link-for-pages': 'off',
     'import/no-anonymous-default-export': 'off',
+    '@next/next/no-img-element': 'off',
 
     // custom
     'import/order': [

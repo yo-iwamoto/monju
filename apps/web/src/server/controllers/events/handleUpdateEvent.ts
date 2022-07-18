@@ -19,7 +19,7 @@ export const handleUpdateEvent: NextApiHandler = async (req, res) => {
     return respond400(res);
   }
 
-  const userId = await getUserId(req);
+  const userId = await getUserId.apiRoutes(req, res);
 
   const event = await updateEvent({
     userId,

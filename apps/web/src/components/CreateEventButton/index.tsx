@@ -1,6 +1,6 @@
 import { View } from './view';
-import { createEventForm, type CreateEventForm } from '@/features/events/forms/createEventForm';
-import { useCreateEvent } from '@/features/events/hooks/useCreateEvent';
+import { createEventForm, type CreateEventForm } from '@/forms/createEventForm';
+import { useCreateEvent } from '@/hooks/queries/useCreateEvent';
 import { useFormWithSchema } from '@/hooks/useFormWithSchema';
 import { pagesPath } from '@/lib/$path';
 import { type FC, type RefCallback, useEffect, useMemo, useRef, useState } from 'react';

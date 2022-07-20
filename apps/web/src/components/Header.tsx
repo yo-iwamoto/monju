@@ -1,6 +1,6 @@
 import { Link } from './Link';
-import { SignInButton } from '@/features/auth/components/SignInButton';
-import { CreateEventButton } from '@/features/events/components/CreateEventButton';
+import { SignInButton } from '@/components/SignInButton';
+import { CreateEventButton } from '@/components/CreateEventButton';
 import { pagesPath } from '@/lib/$path';
 import { useUserImage } from '@/hooks/useUserImage';
 import { images } from '@/lib/images';

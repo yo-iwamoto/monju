@@ -1,5 +1,5 @@
 import { View } from './view';
-import { useSignIn } from '@/features/auth/hooks/useSignIn';
+import { useSignIn } from '@/hooks/useSignIn';
 import { FC, useState } from 'react';
 
 export const SignInButton: FC = () => {

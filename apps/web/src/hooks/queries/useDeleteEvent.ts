@@ -1,5 +1,5 @@
-import { useEvents } from '@/features/events/hooks/useEvents';
 import { aspida } from '@/lib/aspida';
+import { useEvents } from '@/hooks/queries/useEvents';
 import { useCallback } from 'react';
 
 export const useDeleteEvent = () => {

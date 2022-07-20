@@ -5,7 +5,5 @@ module.exports = {
   pageExtensions: ['page.tsx', 'handler.ts'],
   swcMinify: true,
   reactStrictMode: true,
-  experimental: {
-    outputStandalone: true,
-  },
+  output: 'standalone',
 };

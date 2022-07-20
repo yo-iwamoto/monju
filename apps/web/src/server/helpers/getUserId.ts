@@ -1,10 +1,11 @@
+import { nextAuthOptions } from '@/lib/nextAuth';
 import { prisma } from '@/server/lib/prisma';
 import { ServerError } from '@/server/lib/ServerError';
-import { NextApiRequest } from 'next';
-import { getSession } from 'next-auth/react';
+import { Session, unstable_getServerSession } from 'next-auth';
+import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next';
 
-export const getUserId = async (req: NextApiRequest) => {
-  const email = (await getSession({ req }))?.user?.email;
+const getUserIdFromSession = async (session: Session | null) => {
+  const email = session?.user?.email;
   if (email === null || email === undefined) {
     throw ServerError.unauthorized();
   }
@@ -15,4 +16,15 @@ export const getUserId = async (req: NextApiRequest) => {
   }
 
   return userId;
+};
+
+export const getUserId = {
+  apiRoutes: async (req: NextApiRequest, res: NextApiResponse) => {
+    const session = await unstable_getServerSession(req, res, nextAuthOptions);
+    return getUserIdFromSession(session);
+  },
+  gssp: async ({ req, res }: GetServerSidePropsContext) => {
+    const session = await unstable_getServerSession(req, res, nextAuthOptions);
+    return getUserIdFromSession(session);
+  },
 };

@@ -1,6 +1,9 @@
+import { getServerSideProps } from './index.server';
 import View from './index.view';
-import { useEvent } from '@/features/events/hooks/useEvent';
+import { useEvent } from '@/hooks/queries/useEvent';
 import { usePageQuery } from '@/hooks/usePageQuery';
+
+export { getServerSideProps };
 
 export default function () {
   const idQuery = usePageQuery('id');

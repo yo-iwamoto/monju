@@ -7,7 +7,7 @@ type Props = {
 export default function ({ event }: Props) {
   return (
     <>
-      <h1>Hello here an setting page</h1>
+      <h1>イベントの設定ページです</h1>
       <p>{event?.title}</p>
     </>
   );

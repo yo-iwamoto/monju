@@ -9,7 +9,10 @@ export const Layout: FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className='min-h-screen'>
+        <div className='absolute -z-10 h-screen w-screen bg-gray-50'></div>
+        {children}
+      </main>
     </>
   );
 };

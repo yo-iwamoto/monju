@@ -1,6 +1,7 @@
 import View from './index.view';
 import { usePageQuery } from '@/hooks/usePageQuery';
 import { useEvent } from '@/hooks/queries/useEvent';
+import { Head } from '@/components/Head';
 
 export default function () {
   const idQuery = usePageQuery('id');
@@ -13,10 +14,9 @@ export default function () {
   }
 
   return (
-    <View
-      {...{
-        event,
-      }}
-    />
+    <>
+      <Head title={event?.title ?? undefined} />
+      <View event={event} />
+    </>
   );
 }

@@ -2,6 +2,7 @@ import { getServerSideProps } from './index.server';
 import View from './index.view';
 import { useEvent } from '@/hooks/queries/useEvent';
 import { usePageQuery } from '@/hooks/usePageQuery';
+import { Head } from '@/components/Head';
 
 export { getServerSideProps };
 
@@ -15,5 +16,10 @@ export default function () {
     return <p>error!</p>;
   }
 
-  return <View event={event} />;
+  return (
+    <>
+      <Head title='イベント設定' />
+      <View event={event} />
+    </>
+  );
 }

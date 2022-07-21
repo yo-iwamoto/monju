@@ -1,6 +1,6 @@
 import { getUserId } from '@/server/helpers/getUserId';
+import { prisma } from '@/server/lib/prisma';
 import { ServerError, serverErrorCode } from '@/server/lib/ServerError';
-import { showEvent } from '@/server/services/events/showEvent';
 import type { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -16,7 +16,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
 
     // eventを取得(存在しなければ)
-    const event = await showEvent({ id });
+    const event = await prisma.event.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        userId: true,
+      },
+    });
     if (event === null) {
       throw ServerError.notFound();
     }

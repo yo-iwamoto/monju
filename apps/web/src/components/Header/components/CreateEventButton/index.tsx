@@ -46,14 +46,12 @@ export const CreateEventButton: FC = () => {
 
   return (
     <View
-      {...{
-        isShown,
-        open: () => setIsShown(true),
-        close: () => setIsShown(false),
-        onSubmit,
-        formNameAttributes,
-        isCreating,
-      }}
+      isShown={isShown}
+      open={() => setIsShown(true)}
+      close={() => setIsShown(false)}
+      onSubmit={onSubmit}
+      formNameAttributes={formNameAttributes}
+      isCreating={isCreating}
     />
   );
 };

@@ -17,7 +17,6 @@
   "dependencies": {
     "@aspida/axios": "^1.10.2",
     "@hookform/resolvers": "^2.8.8",
-    "@next-auth/prisma-adapter": "^1.0.3",
     "@prisma/client": "^4.0.0",
     "aws-sdk": "^2.1171.0",
     "axios": "^0.26.1",

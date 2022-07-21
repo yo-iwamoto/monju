@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "yarn g:lint",
     "format": "yarn g:format",
-    "aspida:build": "aspida",
+    "api:build": "../../node_modules/.bin/aspida",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

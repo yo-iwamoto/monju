@@ -1,17 +1,14 @@
+import { GITHUB_OAUTH_SCOPES } from 'src/common/const';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthProvider } from '@prisma/client';
 import axios from 'axios';
-import { GITHUB_OAUTH_SCOPES } from 'src/common/const';
-import { PrismaService } from 'src/prisma/prisma.service';
 import type { Env } from 'src/common/types/Env';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private configService: ConfigService<Env, true>,
-    private prismaService: PrismaService,
-  ) {}
+  constructor(private configService: ConfigService<Env, true>, private prismaService: PrismaService) {}
 
   redirectToGitHubAuthorizePage() {
     const clientId = this.configService.get('GITHUB_CLIENT_ID');

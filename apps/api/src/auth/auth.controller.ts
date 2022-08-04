@@ -13,10 +13,7 @@ export class AuthController {
   }
 
   @Get('/github/callback')
-  async handleGitHubCallback(
-    @Query('code') code: string,
-    @Res({ passthrough: true }) reply: FastifyReply,
-  ) {
+  async handleGitHubCallback(@Query('code') code: string, @Res({ passthrough: true }) reply: FastifyReply) {
     const { user, accessToken } = await this.authService.signInWithGitHub(code);
     reply.setCookie('github_access_token', accessToken, {
       httpOnly: true,

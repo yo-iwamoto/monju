@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -9,16 +9,16 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(cuid()) @map("id")
   createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  userId       String       @unique @map("user_id")
-  displayId    String       @unique @map("display_id")
+  userId       String       @unique @map("user_id") @db.VarChar(100)
+  displayId    String       @unique @map("display_id") @db.VarChar(100)
   authProvider AuthProvider @map("auth_provider")
-  imageUrl     String
-  name         String
-  email        String
+  imageUrl     String       @map("image_url")
+  name         String       @map("name") @db.VarChar(100)
+  email        String       @map("email")
 
   @@map("users")
 }
@@ -26,4 +26,6 @@ model User {
 enum AuthProvider {
   github
   google
+
+  @@map("auth_provider")
 }

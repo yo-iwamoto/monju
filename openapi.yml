@@ -1,0 +1,37 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /auth/github:
+    get:
+      operationId: AuthController_redirectToGitHubAuthorizePage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /auth/github/callback:
+    get:
+      operationId: AuthController_handleGitHubCallback
+      parameters:
+        - name: code
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+info:
+  title: '@monju/api'
+  description: ''
+  version: 0.0.1
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas: {}

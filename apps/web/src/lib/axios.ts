@@ -1,3 +1,5 @@
-import axios from 'axios';
+import Axios from 'axios';
+
+const axios = Axios.create();
 
 export { axios };

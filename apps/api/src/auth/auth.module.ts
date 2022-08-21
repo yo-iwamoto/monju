@@ -1,10 +1,14 @@
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { GithubAuthModule } from '@/githubAuth/githubAuth.module';
+import { GithubAuthService } from '@/githubAuth/githubAuth.service';
+import { UserModule } from '@/user/user.module';
+import { UserService } from '@/user/user.service';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, ConfigService],
+  imports: [GithubAuthModule, UserModule],
+  providers: [AuthService, GithubAuthService, UserService],
 })
 export class AuthModule {}

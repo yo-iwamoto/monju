@@ -1,12 +1,5 @@
 openapi: 3.0.0
 paths:
-  /:
-    get:
-      operationId: AppController_getHello
-      parameters: []
-      responses:
-        '200':
-          description: ''
   /auth/github:
     get:
       operationId: AuthController_redirectToGitHubAuthorizePage
@@ -14,15 +7,26 @@ paths:
       responses:
         '200':
           description: ''
-  /auth/github/callback:
-    get:
-      operationId: AuthController_handleGitHubCallback
+  /auth/github/code:
+    post:
+      operationId: AuthController_signInWithGitHub
       parameters:
         - name: code
           required: true
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInWithGitHubResponse'
+  /user/example:
+    get:
+      operationId: UserController_example
+      parameters: []
       responses:
         '200':
           description: ''
@@ -34,4 +38,11 @@ info:
 tags: []
 servers: []
 components:
-  schemas: {}
+  schemas:
+    SignInWithGitHubResponse:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+        - token

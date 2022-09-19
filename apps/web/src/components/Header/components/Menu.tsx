@@ -1,4 +1,4 @@
-import { signOut } from 'next-auth/react';
+// import { signOut } from 'next-auth/react';
 import type { FC } from 'react';
 
 export const Menu: FC = () => {
@@ -10,7 +10,9 @@ export const Menu: FC = () => {
             className='rounded-md bg-white p-3 text-sm transition-colors delay-75 hover:bg-gray-100'
             type='button'
             aria-label='ログアウト'
-            onClick={() => signOut()}
+            onClick={() => {
+              //
+            }}
           >
             ログアウト
           </button>

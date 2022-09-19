@@ -8,12 +8,20 @@ import { writeFileSync } from 'node:fs';
 import type { NestFastifyApplication } from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
+    cors: {
+      origin: 'http://localhost:3000',
+      credentials: false,
+      methods: ['*'],
+    },
+  });
 
-  const swaggerConfig = new DocumentBuilder().setTitle('@monju/api').setVersion('0.0.1').build();
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  writeFileSync('../../openapi.yml', dump(document));
-  SwaggerModule.setup('docs', app, document);
+  if (process.env.NODE_ENV === 'development') {
+    const swaggerConfig = new DocumentBuilder().setTitle('@monju/api').setVersion('0.0.1').build();
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    writeFileSync('../../openapi.yml', dump(document));
+    SwaggerModule.setup('docs', app, document);
+  }
 
   await app.register(fastifyCookie, {
     secret: process.env.COOKIE_SECRET,

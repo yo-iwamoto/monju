@@ -1,4 +1,9 @@
 export const pagesPath = {
+  "callback": {
+    "github": {
+      $url: (url?: { hash?: string }) => ({ pathname: '/callback/github' as const, hash: url?.hash })
+    }
+  },
   "events": {
     _id: (id: string | number) => ({
       "settings": {

@@ -1,15 +1,11 @@
 import type { AuthProvider } from '@prisma/client';
 
 export type ExistsUser = {
-  accessToken: string;
   userId: string;
-  newUser: false;
 };
 
 export type NewUser = {
-  accessToken: string;
   userId: string;
-  newUser: true;
   email: string;
   name: string;
   imageUrl: string;
@@ -17,4 +13,15 @@ export type NewUser = {
   authProvider: AuthProvider;
 };
 
-export type GetUserInfoResult = ExistsUser | NewUser;
+export type GetUserInfoResult = {
+  accessToken: string;
+} & (
+  | {
+      isNewUser: true;
+      user: NewUser;
+    }
+  | {
+      isNewUser: false;
+      user: ExistsUser;
+    }
+);

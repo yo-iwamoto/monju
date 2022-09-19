@@ -56,9 +56,11 @@ export class GithubAuthService {
     const user = await this.userService.getSafe({ userId });
     if (user !== null) {
       return {
-        newUser: false,
-        userId,
+        isNewUser: false,
         accessToken,
+        user: {
+          userId,
+        },
       };
     }
 
@@ -73,14 +75,16 @@ export class GithubAuthService {
     }
 
     return {
-      newUser: true,
-      email,
-      userId,
-      name: userResponse.data.name,
-      imageUrl: userResponse.data.avatar_url,
-      displayId: userResponse.data.login,
-      authProvider: AuthProvider.github,
+      isNewUser: true,
       accessToken,
+      user: {
+        email,
+        userId,
+        name: userResponse.data.name,
+        imageUrl: userResponse.data.avatar_url,
+        displayId: userResponse.data.login,
+        authProvider: AuthProvider.github,
+      },
     };
   }
 }

@@ -1,6 +1,5 @@
 import { Button } from '@/components/Button';
 import { Dialog } from '@/components/Dialog';
-import { API_URL } from '@/config/const';
 import { aspida } from '@/lib/aspida';
 import type { FC } from 'react';
 

@@ -1,16 +1,13 @@
 import { AuthService } from './auth.service';
-import { Controller, Get, Query, Redirect } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import type { Env } from '@/common/types/Env';
+import { SignInWithGitHubResponse } from './response';
+import { Controller, Get, Post, Query, Redirect, Response } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { FastifyReply } from 'fastify';
 import { GithubAuthService } from '@/githubAuth/githubAuth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private githubAuthService: GithubAuthService,
-    private authService: AuthService,
-    private configService: ConfigService<Env, true>
-  ) {}
+  constructor(private githubAuthService: GithubAuthService, private authService: AuthService) {}
 
   @Get('/github')
   @Redirect()
@@ -21,17 +18,22 @@ export class AuthController {
     };
   }
 
-  @Get('/github/callback')
-  @Redirect()
-  async handleGitHubCallback(@Query('code') code: string) {
+  @Post('/github/code')
+  @ApiOkResponse({ type: SignInWithGitHubResponse })
+  async signInWithGitHub(@Query('code') code: string, @Response() rep: FastifyReply) {
     const result = await this.githubAuthService.getUserInfoFromCode(code);
-    if (result.newUser) {
-      const user = this.authService.signUp(result);
+    if (result.isNewUser) {
+      await this.authService.register(result.user);
     }
 
+    const token = this.authService.issueToken({
+      userId: result.user.userId,
+      accessToken: result.accessToken,
+    });
+    rep.cookie('token', token);
+
     return {
-      url: this.configService.get('WEBSITE_URL'),
-      status: 302,
+      token,
     };
   }
 }
